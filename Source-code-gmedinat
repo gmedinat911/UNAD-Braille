@@ -1,0 +1,474 @@
+disp('Bienvenido! Este programa le ayudará a traducir el alfabeto convencional al sistema braille')
+y=1;
+%A partir de aquí se empieza a leer todas las imágenes de las
+%representaciones en Braille
+%Cada una se guarda en una variable diferente
+a1=imread('a.jpg');
+b1=imread('b.jpg');
+c1=imread('c.jpg');
+d1=imread('d.jpg');
+e1=imread('e.jpg');
+f1=imread('f.jpg');
+g1=imread('g.jpg');
+h1=imread('h.jpg');
+i1=imread('i.jpg');
+j1=imread('j.jpg');
+k1=imread('k.jpg');
+l1=imread('l.jpg');
+m1=imread('m.jpg');
+n1=imread('n.jpg');
+ne1=imread('ñ.jpg');
+o1=imread('o.jpg');
+p1=imread('p.jpg');
+q1=imread('q.jpg');
+r1=imread('r.jpg');
+s1=imread('s.jpg');
+t1=imread('t.jpg');
+u1=imread('u.jpg');
+v1=imread('v.jpg');
+w1=imread('w.jpg');
+x1=imread('x.jpg');
+y1=imread('y.jpg');
+z1=imread('z.jpg');
+a2=imread('á.jpg');
+e2=imread('é.jpg');
+i2=imread('í.jpg');
+o2=imread('ó.jpg');
+u2=imread('ú.jpg');
+sp1=imread('sp.jpg');
+%Aquí se hace que todas las imágenes tengan la mismas dimensiones ya que es
+%importante a la hora de unir las imágenes de cada letra para hacer la
+%representación en Braille de una oración.
+a1=imresize(a1,[100,75]);
+b1=imresize(b1,[100,75]);
+c1=imresize(c1,[100,75]);
+d1=imresize(d1,[100,75]);
+e1=imresize(e1,[100,75]);
+f1=imresize(f1,[100,75]);
+g1=imresize(g1,[100,75]);
+h1=imresize(h1,[100,75]);
+i1=imresize(i1,[100,75]);
+j1=imresize(j1,[100,75]);
+k1=imresize(k1,[100,75]);
+l1=imresize(l1,[100,75]);
+m1=imresize(m1,[100,75]);
+n1=imresize(n1,[100,75]);
+ne1=imresize(ne1,[100,75]);
+o1=imresize(o1,[100,75]);
+p1=imresize(p1,[100,75]);
+q1=imresize(q1,[100,75]);
+r1=imresize(r1,[100,75]);
+s1=imresize(s1,[100,75]);
+t1=imresize(t1,[100,75]);
+u1=imresize(u1,[100,75]);
+v1=imresize(v1,[100,75]);
+w1=imresize(w1,[100,75]);
+x1=imresize(x1,[100,75]);
+y1=imresize(y1,[100,75]);
+z1=imresize(z1,[100,75]);
+a2=imresize(a2,[100,75]);
+e2=imresize(e2,[100,75]);
+i2=imresize(i2,[100,75]);
+o2=imresize(o2,[100,75]);
+u2=imresize(u2,[100,75]);
+sp1=imresize(sp1,[100,75]);
+%Aquí se hace el menú de opciones que se pueda repetir cada vez que quiera
+%el usuario
+while (y==1)
+disp('Usted puede:')
+disp('1) Traducir una oración')
+disp('2) Ver la representación en Braile de una letra')
+disp('3) Ver las representaciones en Braile de los carácteres antes y después de la letra escogida por usted')
+A=input('Escoja una opción (1, 2, 3): \n');
+    %Dependiendo a la opción que escoja el usuario, se aplica un
+    %procedimiento diferente
+    switch A
+        case 1 
+            w=input('Escriba una oración entre comillas simples (''...'') \n'); %Se lee la oración
+            hm=length(w); %Se debe saber cuál es la longitud de la oración contando los espacios
+            len=hm; %Se hace una copia de hm
+            hm=ceil(hm/5); %Se va a optar por dividir toda la oración en 5 
+                           %partes para distribuir uniformemente las letras en la imágen
+                           %aproximando un número hacia arriba por si se
+                           %tiene un número decimal
+            %Esto es para tener una línea totalmente blanca en la imagen
+            %formado por 7 pequeñas imagenes en blanco 
+            wdm2=sp1;
+            for i=1:6
+               wdm2=cat(2,wdm2,sp1);
+            end
+            %Se hace una copia de la línea blanca
+            wdm3=wdm2;
+            %Este es el cíclo para formar la imágen con las letras//
+            %Dependiendo a en cuánto se haya divido la oración se va a
+            %hacer un ciclo para unir una línea con 5 imágenes y dos espacios en blanco en los extremos (estética) hasta
+            %completar toda la oración
+            for i=1:hm
+                %wdm será nuestra línea de 5 imagenes para ir formando una oración 
+                %Se comienza wdm iniciando con un espacio en blanco solo
+                %por temas de estética
+                wdm=sp1;
+                %Aquí se le va pegando a wdm la imágen de la letra 
+                %correspondiente a cada letra de la oración 
+                for j=1:5
+                    if (5*(i-1)+j)<=len 
+                        %Ahora, dependiendo a cuál sea la letra, el algoritmo agrega la imagen correspondiente a wdm                
+                        if w(5*(i-1)+j)=='a' || w(5*(i-1)+j)=='A'
+                            wdm=cat(2,wdm,a1);
+                        end
+                        if w(5*(i-1)+j)=='b' || w(5*(i-1)+j)=='B'
+                            wdm=cat(2,wdm,b1);
+                        end
+                        if w(5*(i-1)+j)=='c' || w(5*(i-1)+j)=='C'
+                            wdm=cat(2,wdm,c1);
+                        end
+                        if w(5*(i-1)+j)=='d' || w(5*(i-1)+j)=='D'
+                            wdm=cat(2,wdm,d1);
+                        end
+                        if w(5*(i-1)+j)=='e'  || w(5*(i-1)+j)=='E'
+                            wdm=cat(2,wdm,e1);
+                        end
+                        if w(5*(i-1)+j)=='f' || w(5*(i-1)+j)=='F'
+                            wdm=cat(2,wdm,f1);
+                        end
+                        if w(5*(i-1)+j)=='g' || w(5*(i-1)+j)=='G'
+                            wdm=cat(2,wdm,g1);
+                        end
+                        if w(5*(i-1)+j)=='h' || w(5*(i-1)+j)=='H'
+                            wdm=cat(2,wdm,h1);
+                        end
+                        if w(5*(i-1)+j)=='i' || w(5*(i-1)+j)=='I'
+                            wdm=cat(2,wdm,i1);
+                        end
+                        if w(5*(i-1)+j)=='j' || w(5*(i-1)+j)=='J'
+                            wdm=cat(2,wdm,j1);
+                        end
+                        if w(5*(i-1)+j)=='k' || w(5*(i-1)+j)=='K'
+                            wdm=cat(2,wdm,k1);
+                        end
+                        if w(5*(i-1)+j)=='l' || w(5*(i-1)+j)=='L'
+                            wdm=cat(2,wdm,l1);
+                        end
+                        if w(5*(i-1)+j)=='m' || w(5*(i-1)+j)=='M'
+                            wdm=cat(2,wdm,m1);
+                        end
+                        if w(5*(i-1)+j)=='n' || w(5*(i-1)+j)=='N'
+                            wdm=cat(2,wdm,n1);
+                        end
+                        if w(5*(i-1)+j)=='ñ' || w(5*(i-1)+j)=='Ñ'
+                            wdm=cat(2,wdm,ne1);
+                        end
+                        if w(5*(i-1)+j)=='o' || w(5*(i-1)+j)=='O'
+                            wdm=cat(2,wdm,o1);
+                        end
+                        if w(5*(i-1)+j)=='p' || w(5*(i-1)+j)=='P'
+                            wdm=cat(2,wdm,p1);
+                        end
+                        if w(5*(i-1)+j)=='q' || w(5*(i-1)+j)=='Q'
+                            wdm=cat(2,wdm,q1);
+                        end
+                        if w(5*(i-1)+j)=='r' || w(5*(i-1)+j)=='R'
+                            wdm=cat(2,wdm,r1);
+                        end
+                        if w(5*(i-1)+j)=='s' || w(5*(i-1)+j)=='S'
+                            wdm=cat(2,wdm,s1);
+                        end
+                        if w(5*(i-1)+j)=='t' || w(5*(i-1)+j)=='T'
+                            wdm=cat(2,wdm,t1);
+                        end
+                        if w(5*(i-1)+j)=='u' || w(5*(i-1)+j)=='U'
+                            wdm=cat(2,wdm,u1);
+                        end
+                        if w(5*(i-1)+j)=='v' || w(5*(i-1)+j)=='V'
+                            wdm=cat(2,wdm,v1);
+                        end
+                        if w(5*(i-1)+j)=='w' || w(5*(i-1)+j)=='W'
+                            wdm=cat(2,wdm,w1);
+                        end
+                        if w(5*(i-1)+j)=='x' || w(5*(i-1)+j)=='X'
+                            wdm=cat(2,wdm,x1);
+                        end
+                        if w(5*(i-1)+j)=='y' || w(5*(i-1)+j)=='Y'
+                            wdm=cat(2,wdm,y1);
+                        end
+                        if w(5*(i-1)+j)=='z' || w(5*(i-1)+j)=='Z'
+                            wdm=cat(2,wdm,z1);
+                        end
+                        if w(5*(i-1)+j)=='á' || w(5*(i-1)+j)=='Á' %#ok<*STCMP>
+                            wdm=cat(2,wdm,a2);
+                        end
+                        if w(5*(i-1)+j)=='é' || w(5*(i-1)+j)=='É'
+                            wdm=cat(2,wdm,e2);
+                        end
+                        if w(5*(i-1)+j)=='í' || w(5*(i-1)+j)=='Í'
+                            wdm=cat(2,wdm,i2);
+                        end
+                        if w(5*(i-1)+j)=='ó' || w(5*(i-1)+j)=='Ó'
+                            wdm=cat(2,wdm,o2);
+                        end
+                        if w(5*(i-1)+j)=='ú' || w(5*(i-1)+j)=='Ú'
+                            wdm=cat(2,wdm,u2);
+                        end
+                        if w(5*(i-1)+j)==' '
+                            wdm=cat(2,wdm,sp1);
+                        end
+                    end
+                    if (5*(i-1)+j)>len %Esto se hace en el caso de que la oración tenga menos de 5 letras
+                                       %En consecuencia se llena el espacio faltante de espacios en blanco
+                        wdm=cat(2,wdm,sp1);
+                    end
+                end
+                %Aquí se pega una línea de 5 letra con otra línea de 5
+                %letras
+                wdm=cat(2,wdm,sp1);
+                wdm2=cat(1,wdm2,wdm);
+            end
+            %Esto es para tener una línea totalmente blanca en la imagen
+            %formado por 7 pequeñas imagenes en blanco al final de la imagen (Estética) 
+            wdm2=cat(1,wdm2,wdm3);
+            imshow(wdm2) %Con este comando se muestra la imágen
+        case 2
+            %Se aplica la misma lógica pero solo para la letra que haya
+            %ingresado el usuario.
+            w=input('Escriba una letra entre comillas y sin espacios(''...'') \n');
+                        if w(1)=='a' || w(1)=='A'
+                            imshow(a1);
+                        end
+                        if w(1)=='b' || w(1)=='B'
+                            imshow(b1);
+                        end
+                        if w(1)=='c' || w(1)=='C'
+                            imshow(c1);
+                        end
+                        if w(1)=='d' || w(1)=='D'
+                            imshow(d1);
+                        end
+                        if w(1)=='e'  || w(1)=='E'
+                            imshow(e1);
+                        end
+                        if w(1)=='f' || w(1)=='F'
+                            imshow(f1);
+                        end
+                        if w(1)=='g' || w(1)=='G'
+                            imshow(g1);
+                        end
+                        if w(1)=='h' || w(1)=='H'
+                            imshow(h1);
+                        end
+                        if w(1)=='i' || w(1)=='I'
+                            imshow(i1);
+                        end
+                        if w(1)=='j' || w(1)=='J'
+                            imshow(j1);
+                        end
+                        if w(1)=='k' || w(1)=='K'
+                            imshow(k1);
+                        end
+                        if w(1)=='l' || w(1)=='L'
+                            imshow(l1);
+                        end
+                        if w(1)=='m' || w(1)=='M'
+                            imshow(m1);
+                        end
+                        if w(1)=='n' || w(1)=='N'
+                            imshow(n1);
+                        end
+                        if w(1)=='ñ' || w(1)=='Ñ'
+                            imshow(ne1);
+                        end
+                        if w(1)=='o' || w(1)=='O'
+                            imshow(o1);
+                        end
+                        if w(1)=='p' || w(1)=='P'
+                            imshow(p1);
+                        end
+                        if w(1)=='q' || w(1)=='Q'
+                            imshow(q1);
+                        end
+                        if w(1)=='r' || w(1)=='R'
+                            imshow(r1);
+                        end
+                        if w(1)=='s' || w(1)=='S'
+                            imshow(s1);
+                        end
+                        if w(1)=='t' || w(1)=='T'
+                            imshow(t1);
+                        end
+                        if w(1)=='u' || w(1)=='U'
+                            imshow(u1);
+                        end
+                        if w(1)=='v' || w(1)=='V'
+                            imshow(v1);
+                        end
+                        if w(1)=='w' || w(1)=='W'
+                            imshow(w1);
+                        end
+                        if w(1)=='x' || w(1)=='X'
+                            imshow(x1);
+                        end
+                        if w(1)=='y' || w(1)=='Y'
+                            imshow(y1);
+                        end
+                        if w(1)=='z' || w(1)=='Z'
+                            imshow(z1);
+                        end
+                        if w(1)=='á' || w(1)=='Á' %#ok<*STCMP>
+                            imshow(a2);
+                        end
+                        if w(1)=='é' || w(1)=='É'
+                            imshow(e2);
+                        end
+                        if w(1)=='í' || w(1)=='Í'
+                            imshow(i2);
+                        end
+                        if w(1)=='ó' || w(1)=='Ó'
+                            imshow(o2);
+                        end
+                        if w(1)=='ú' || w(1)=='Ú'
+                            imshow(u2);
+                        end
+                        if w(1)==' '
+                            imshow(sp1);
+                        end
+        case 3
+            w=input('Escriba una letra entre comillas y sin espacios(''...'') \n');
+                        %Se plantea la misma lógica
+                        if w(1)=='a' || w(1)=='A' || w(1)=='á' || w(1)=='Á'
+                            wdm=z1;
+                            wdm=cat(2,wdm,b1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='b' || w(1)=='B'
+                            wdm=a1;
+                            wdm=cat(2,wdm,c1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='c' || w(1)=='C'
+                            wdm=b1;
+                            wdm=cat(2,wdm,d1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='d' || w(1)=='D'
+                            wdm=c1;
+                            wdm=cat(2,wdm,e1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='e'  || w(1)=='E' || w(1)=='é' || w(1)=='É'
+                            wdm=d1;
+                            wdm=cat(2,wdm,f1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='f' || w(1)=='F'
+                            wdm=e1;
+                            wdm=cat(2,wdm,g1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='g' || w(1)=='G'
+                            wdm=f1;
+                            wdm=cat(2,wdm,h1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='h' || w(1)=='H'
+                            wdm=g1;
+                            wdm=cat(2,wdm,i1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='i' || w(1)=='I' || w(1)=='í' || w(1)=='Í'
+                            wdm=h1;
+                            wdm=cat(2,wdm,j1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='j' || w(1)=='J'
+                            wdm=i1;
+                            wdm=cat(2,wdm,k1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='k' || w(1)=='K'
+                            wdm=j1;
+                            wdm=cat(2,wdm,l1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='l' || w(1)=='L'
+                            wdm=k1;
+                            wdm=cat(2,wdm,m1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='m' || w(1)=='M'
+                            wdm=l1;
+                            wdm=cat(2,wdm,n1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='n' || w(1)=='N'
+                            wdm=m1;
+                            wdm=cat(2,wdm,ne1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='ñ' || w(1)=='Ñ'
+                            wdm=n1;
+                            wdm=cat(2,wdm,o1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='o' || w(1)=='O' || w(1)=='ó' || w(1)=='Ó'
+                            wdm=ne1;
+                            wdm=cat(2,wdm,p1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='p' || w(1)=='P'
+                            wdm=o1;
+                            wdm=cat(2,wdm,q1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='q' || w(1)=='Q'
+                            wdm=p1;
+                            wdm=cat(2,wdm,r1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='r' || w(1)=='R'
+                            wdm=q1;
+                            wdm=cat(2,wdm,s1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='s' || w(1)=='S'
+                            wdm=r1;
+                            wdm=cat(2,wdm,t1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='t' || w(1)=='T'
+                            wdm=s1;
+                            wdm=cat(2,wdm,u1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='u' || w(1)=='U' || w(1)=='ú' || w(1)=='Ú'
+                            wdm=t1;
+                            wdm=cat(2,wdm,v1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='v' || w(1)=='V'
+                            wdm=u1;
+                            wdm=cat(2,wdm,w1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='w' || w(1)=='W'
+                            wdm=v1;
+                            wdm=cat(2,wdm,x1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='x' || w(1)=='X'
+                            wdm=w1;
+                            wdm=cat(2,wdm,y1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='y' || w(1)=='Y'
+                            wdm=x1;
+                            wdm=cat(2,wdm,z1);
+                            imshow(wdm);
+                        end
+                        if w(1)=='z' || w(1)=='Z'
+                            wdm=y1;
+                            wdm=cat(2,wdm,a1);
+                            imshow(wdm);
+                        end
+                        print('wdm','-dpdf')
+    end
+    y=input('¿Desea continuar? Presione 1, de lo contrario 0 \n');
+end
